@@ -1,21 +1,9 @@
 const express = require('express')
-const bodyParser = require('body-parser');
-const cors = require('cors');
-
+ 
 const app = express();
 const port = process.env.port || 3000;
 
-const mendixmodelsdk_1 = require("mendixmodelsdk");
-const mendixplatformsdk_1 = require("mendixplatformsdk");
-// Where we will keep books
-
-app.use(cors());
-
-// Configuring body parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.post('/create', async (req, res) => {
+app.get('/', async (req, res) => {
     // const body = req.body;
 
     res.send('completed');
