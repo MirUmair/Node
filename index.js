@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const port = 3000;
+const port = process.env.port || 3000;
 
 const mendixmodelsdk_1 = require("mendixmodelsdk");
 const mendixplatformsdk_1 = require("mendixplatformsdk");
