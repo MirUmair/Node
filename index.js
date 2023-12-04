@@ -1,12 +1,15 @@
 const express = require('express')
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = process.env.port || 3000;
-
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.post('/', async (req, res) => {
-    // const body = req.body;
-
-    res.send('completed1232323111');
+    const body = req.body;
+     res.send(body);
 });
 
 
