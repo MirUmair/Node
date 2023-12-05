@@ -1,19 +1,45 @@
-const express = require('express')
-const cors = require('cors');
-const bodyParser = require('body-parser');
+// const express = require('express')
+// const cors = require('cors');
+// const bodyParser = require('body-parser');
 
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import { CreateEntities } from "./Functions/CreateEntities.js";
+import { CreateJson_Structure } from "./Functions/CreateJsonStructure.js";
+import { CreateImport_Mapping } from "./Functions/CreateImport_Mapping.js";
+
+import { ApplicationName } from "./Utilities/Index.js";
 const app = express();
 const port = process.env.port || 3000;
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.post('/', async (req, res) => {
+    console.log(req.body)
     const body = req.body;
-     res.send(body);
+
+    const moduleName = body.moduleName;
+    const jsonData1 = body.json
+    const app = ApplicationName(body.appId);
+    const workingCopy = await app.createTemporaryWorkingCopy("main");
+    const modules = await workingCopy.openModel();
+    const model = modules.allModules().filter((dm) => dm.name === moduleName)[0];
+
+    const domainModelInterface = modules
+        .allDomainModels()
+        .filter((dm) => dm.containerAsModule.name === moduleName)[0];
+    const domainModel = await domainModelInterface.load();
+    CreateEntities(jsonData1, modules, moduleName, domainModel);
+    await modules.flushChanges();
+    await workingCopy.commitToRepository("main");
+    let Json_Structure = CreateJson_Structure(jsonData1, model, modules);
+    CreateImport_Mapping(model, modules, jsonData1, moduleName, Json_Structure);
+    await modules.flushChanges();
+    await workingCopy.commitToRepository("main");
+    res.send('Task Completed Succesfully');
+
 });
-
-
-
 app.listen(port, () => console.log(`App listening on port ${port}!`));
 
 
