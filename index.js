@@ -28,25 +28,28 @@ app.post('/', async (req, res) => {
         const app = ApplicationName('b7b7718c-0167-42eb-9664-64bf345bb83f');
         const workingCopy = await app.createTemporaryWorkingCopy("main");
         const modules = await workingCopy.openModel();
+
+        const model = modules.allModules().filter((dm) => dm.name === moduleName)[0];
+        const domainModelInterface = modules
+            .allDomainModels()
+            .filter((dm) => dm.containerAsModule.name === moduleName)[0];
+        const domainModel = await domainModelInterface.load();
+        CreateEntities(jsonData1, modules, moduleName, domainModel);
+        await modules.flushChanges();
+        await workingCopy.commitToRepository("main");
+        let Json_Structure = CreateJson_Structure(jsonData1, model, modules);
+        CreateImport_Mapping(model, modules, jsonData1, moduleName, Json_Structure);
+        await modules.flushChanges();
+        await workingCopy.commitToRepository("main");
+        res.send('Task Completed Succesfully');
     } catch (error) {
+        res.send(error);
         console.log(error)
     }
 
 
-    return
-    const model = modules.allModules().filter((dm) => dm.name === moduleName)[0];
-    const domainModelInterface = modules
-        .allDomainModels()
-        .filter((dm) => dm.containerAsModule.name === moduleName)[0];
-    const domainModel = await domainModelInterface.load();
-    CreateEntities(jsonData1, modules, moduleName, domainModel);
-    await modules.flushChanges();
-    await workingCopy.commitToRepository("main");
-    let Json_Structure = CreateJson_Structure(jsonData1, model, modules);
-    CreateImport_Mapping(model, modules, jsonData1, moduleName, Json_Structure);
-    await modules.flushChanges();
-    await workingCopy.commitToRepository("main");
-    res.send('Task Completed Succesfully');
+
+
 });
 app.listen(port, () => console.log(`App listening on port ${port}!`));
 
