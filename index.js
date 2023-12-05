@@ -37,7 +37,6 @@ app.post('/', async (req, res) => {
     await modules.flushChanges();
     setTimeout(async () => {
         await workingCopy.commitToRepository("main");
-
     }, 100);
 
 });
