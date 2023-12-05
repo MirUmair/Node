@@ -37,7 +37,7 @@ app.post('/', async (req, res) => {
     await workingCopy.commitToRepository("main");
     res.send("Completed")
 
-    return
+     
     let Json_Structure = CreateJson_Structure(jsonData1, model, modules);
     CreateImport_Mapping(model, modules, jsonData1, moduleName, Json_Structure);
  
