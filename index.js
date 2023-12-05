@@ -17,11 +17,10 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.post('/', async (req, res) => {
+    var body =req.body;
     setPlatformConfig({ mendixToken: '4QzrPbWAr3iUJG3Y9myWuwVsevQh57djgiarwnomS54KY3wFkpf1fh1MjDF3k1CFtEPsrvD7radeCU7W4Giwp7nwGs9GnG4Af1ok' });
-
-
-    const moduleName = "SDKModule";// body.moduleName;
-    const jsonData1 = { "ToDoList": [{ "Task": "Send email" }] }//body.json
+    const moduleName =body.moduleName;// "SDKModule";// body.moduleName;
+    const jsonData1 = body.json//{ "ToDoList": [{ "Task": "Send email" }] }//body.json
 
     const app = ApplicationName('b7b7718c-0167-42eb-9664-64bf345bb83f');
     const workingCopy = await app.createTemporaryWorkingCopy("main");
@@ -36,9 +35,12 @@ app.post('/', async (req, res) => {
     CreateEntities(jsonData1, modules, moduleName, domainModel,model);
     await modules.flushChanges();
     await workingCopy.commitToRepository("main");
+    res.send("Completed")
+
+    return
     let Json_Structure = CreateJson_Structure(jsonData1, model, modules);
     CreateImport_Mapping(model, modules, jsonData1, moduleName, Json_Structure);
-
+ 
     await modules.flushChanges();
     await workingCopy.commitToRepository("main");
     res.send("Completed")
