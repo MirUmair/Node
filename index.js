@@ -37,7 +37,7 @@ app.post('/', async (req, res) => {
     await modules.flushChanges();
     setTimeout(async () => {
         await workingCopy.commitToRepository("main");
-    }, 100);
+    }, 1000);
 
 });
 app.listen(port, () => console.log(`App listening on port ${port}!`));
