@@ -17,10 +17,10 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.post('/', async (req, res) => {
+    setPlatformConfig({ MendixApiKey: '4QzrPbWAr3iUJG3Y9myWuwVsevQh57djgiarwnomS54KY3wFkpf1fh1MjDF3k1CFtEPsrvD7radeCU7W4Giwp7nwGs9GnG4Af1ok' });
 
     console.log(req.body)
     try {
-        setPlatformConfig({ MendixApiKey: '4QzrPbWAr3iUJG3Y9myWuwVsevQh57djgiarwnomS54KY3wFkpf1fh1MjDF3k1CFtEPsrvD7radeCU7W4Giwp7nwGs9GnG4Af1ok' });
 
         const body = req.body;
         // res.send(body);
