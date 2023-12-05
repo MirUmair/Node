@@ -17,17 +17,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.post('/', async (req, res) => {
     console.log(req.body)
+    try {
+        const body = req.body;
+        res.send(body);
 
-    const body = req.body;
-    res.send(body);
+        const moduleName = "SDKModule";// body.moduleName;
+        const jsonData1 = { "ToDoList": [{ "Task": "Send email" }] }//body.json
+        res.send('Task Completed Succesful13ly');
 
-    const moduleName = "SDKModule";// body.moduleName;
-    const jsonData1 = {"ToDoList": [{"Task": "Send email"}]}//body.json
-    res.send('Task Completed Succesful13ly');
+        const app = ApplicationName('b7b7718c-0167-42eb-9664-64bf345bb83f');
+        const workingCopy = await app.createTemporaryWorkingCopy("main");
+        const modules = await workingCopy.openModel();
+    } catch (error) {
+        console.log(error)
+    }
 
-    const app = ApplicationName('b7b7718c-0167-42eb-9664-64bf345bb83f');
-    const workingCopy = await app.createTemporaryWorkingCopy("main");
-    const modules = await workingCopy.openModel();
 
     return
     const model = modules.allModules().filter((dm) => dm.name === moduleName)[0];
