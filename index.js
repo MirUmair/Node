@@ -19,11 +19,11 @@ app.post('/', async (req, res) => {
     console.log(req.body)
     try {
         const body = req.body;
-        res.send(body);
+        // res.send(body);
 
         const moduleName = "SDKModule";// body.moduleName;
         const jsonData1 = { "ToDoList": [{ "Task": "Send email" }] }//body.json
-        res.send('Task Completed Succesful13ly');
+        //res.send('Task Completed Succesful13ly');
 
         const app = ApplicationName('b7b7718c-0167-42eb-9664-64bf345bb83f');
         const workingCopy = await app.createTemporaryWorkingCopy("main");
