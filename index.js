@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.post('/', async (req, res) => {
     console.log(req.body)
-    res.send('Task Completed Succesful12ly');
+    res.send(body);
 
     const body = req.body;
     const moduleName = body.moduleName;
