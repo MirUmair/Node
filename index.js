@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.post('/', async (req, res) => {
     setPlatformConfig({ MendixApiKey: '4QzrPbWAr3iUJG3Y9myWuwVsevQh57djgiarwnomS54KY3wFkpf1fh1MjDF3k1CFtEPsrvD7radeCU7W4Giwp7nwGs9GnG4Af1ok' });
 
-    console.log(req.body)
+    console.log(1111111111111111111111,req.body)
     return
     try {
 
