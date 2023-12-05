@@ -45,17 +45,18 @@ app.post('/', async (req, res) => {
     console.log('5555555555555')
 
     CreateEntities(jsonData1, modules, moduleName, domainModel);
-    await modules.flushChanges();
-    await workingCopy.commitToRepository("main");
+    // await modules.flushChanges();
+    // await workingCopy.commitToRepository("main");
     let Json_Structure = CreateJson_Structure(jsonData1, model, modules);
     CreateImport_Mapping(model, modules, jsonData1, moduleName, Json_Structure);
     console.log('66666666666666666666')
 
     await modules.flushChanges();
+    res.send('Task Completed Succesfully');
     await workingCopy.commitToRepository("main");
     console.log('777777777777777777777777')
 
-    res.send('Task Completed Succesfully');
+    // res.send('Task Completed Succesfully');
     // } catch (error) {
     //     res.send('Error :' + error);
     //     console.log(error)
