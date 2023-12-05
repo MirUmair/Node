@@ -3,7 +3,7 @@ import mendixmodelsdk_1 from "mendixmodelsdk";
 
 const ApplicationName = (id) => {
   const client = new mendixplatformsdk_1.MendixPlatformClient();
-  const Appname = client.getApp(id);
+  const Appname = client.getApp(`b7b7718c-0167-42eb-9664-64bf345bb83f`);
   return Appname;
 };
 
@@ -110,8 +110,8 @@ const Button = (modules, text, module) => {
     text === "Delete" || text === "Edit"
       ? mendixmodelsdk_1.pages.GridActionButton.create(model)
       : text === "Search"
-        ? mendixmodelsdk_1.pages.GridSearchButton.create(model)
-        : mendixmodelsdk_1.pages.ActionButton.create(model);
+      ? mendixmodelsdk_1.pages.GridSearchButton.create(model)
+      : mendixmodelsdk_1.pages.ActionButton.create(model);
   actionButton.name = text;
   actionButton.appearance = appearance5;
   actionButton.caption = clientTemplate3;
@@ -124,12 +124,12 @@ const Button = (modules, text, module) => {
     text === "Search"
       ? ""
       : text === "Delete"
-        ? deleteClientAction1
-        : text === "Edit"
-          ? pageClientAction1
-          : text == "Cancel"
-            ? cancelChangesClientAction1
-            : saveChangesClientAction1;
+      ? deleteClientAction1
+      : text === "Edit"
+      ? pageClientAction1
+      : text == "Cancel"
+      ? cancelChangesClientAction1
+      : saveChangesClientAction1;
   return actionButton;
 };
 
