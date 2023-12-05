@@ -43,7 +43,7 @@ app.post('/', async (req, res) => {
         await workingCopy.commitToRepository("main");
         res.send('Task Completed Succesfully');
     } catch (error) {
-        res.send(error);
+        res.send('Error :' + error);
         console.log(error)
     }
 
