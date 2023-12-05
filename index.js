@@ -34,7 +34,7 @@ app.post('/', async (req, res) => {
 
     CreateEntities(jsonData1, modules, moduleName, domainModel,model);
     await modules.flushChanges();
-    await workingCopy.commitToRepository("main");
+    // await workingCopy.commitToRepository("main");
     res.send("Completed")
 
      
