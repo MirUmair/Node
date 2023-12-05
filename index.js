@@ -49,10 +49,12 @@ app.post('/', async (req, res) => {
         await workingCopy.commitToRepository("main");
         let Json_Structure = CreateJson_Structure(jsonData1, model, modules);
         CreateImport_Mapping(model, modules, jsonData1, moduleName, Json_Structure);
-        console.log('22222222222222')
+        console.log('66666666666666666666')
 
         await modules.flushChanges();
         await workingCopy.commitToRepository("main");
+        console.log('777777777777777777777777')
+
         res.send('Task Completed Succesfully');
     } catch (error) {
         res.send('Error :' + error);
