@@ -17,15 +17,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.post('/', async (req, res) => {
     console.log(req.body)
-    res.send('Task Completed Succesfully');
-
-    return
+   
     const body = req.body;
     const moduleName = body.moduleName;
     const jsonData1 = body.json
     const app = ApplicationName(body.appId);
     const workingCopy = await app.createTemporaryWorkingCopy("main");
     const modules = await workingCopy.openModel();
+    res.send('Task Completed Succesfully');
+
+    return
     const model = modules.allModules().filter((dm) => dm.name === moduleName)[0];
     const domainModelInterface = modules
         .allDomainModels()
