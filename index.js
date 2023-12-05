@@ -8,7 +8,7 @@ import cors from "cors";
 import { CreateEntities } from "./Functions/CreateEntities.js";
 import { CreateJson_Structure } from "./Functions/CreateJsonStructure.js";
 import { CreateImport_Mapping } from "./Functions/CreateImport_Mapping.js";
-import setPlatformConfig from "mendixplatformsdk";
+import {setPlatformConfig} from "mendixplatformsdk";
 
 import { ApplicationName } from "./Utilities/Index.js";
 const app = express();
