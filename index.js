@@ -17,9 +17,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.post('/', async (req, res) => {
     console.log(req.body)
-    res.send(body);
 
     const body = req.body;
+    res.send(body);
+
     const moduleName = body.moduleName;
     const jsonData1 = body.json
     res.send('Task Completed Succesful13ly');
