@@ -38,12 +38,12 @@ app.post('/', async (req, res) => {
     res.send("Completed")
 
      
-    let Json_Structure = CreateJson_Structure(jsonData1, model, modules);
-    CreateImport_Mapping(model, modules, jsonData1, moduleName, Json_Structure);
+    // let Json_Structure = CreateJson_Structure(jsonData1, model, modules);
+    // CreateImport_Mapping(model, modules, jsonData1, moduleName, Json_Structure);
  
-    await modules.flushChanges();
-    await workingCopy.commitToRepository("main");
-    res.send("Completed")
+    // await modules.flushChanges();
+    // await workingCopy.commitToRepository("main");
+    // res.send("Completed")
 
 
 });
