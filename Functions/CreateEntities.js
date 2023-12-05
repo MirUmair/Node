@@ -152,6 +152,7 @@ const CreateEntities = (json, modules, moduleName, model) => {
     NewEditPage(modules, element, moduleName);
     OverViewPages(modules, element, moduleName);
   });
+  console.log('Entities Created.')
 };
 
 export { CreateEntities };

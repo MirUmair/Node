@@ -64,6 +64,8 @@ function CreateJson_Structure(json, model) {
   jSON_structure.name = "JSON_structure";
   jSON_structure.jsonSnippet = JSON.stringify(json);
   jSON_structure.elements.push(jsonElementRoot);
+  console.log('JSON Created.')
+
   return jSON_structure;
 }
 

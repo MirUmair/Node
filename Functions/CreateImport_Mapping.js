@@ -26,7 +26,7 @@ function CreateImport_Mapping(
       path:
         "(Object)|" +
         Object.keys(elementTypesWithPaths)
-          [i].replaceAll(".", "|")
+        [i].replaceAll(".", "|")
           .replaceAll("0", "(Object)"),
       value: Object.values(elementTypesWithPaths)[i].value,
       name: name,
@@ -36,8 +36,8 @@ function CreateImport_Mapping(
         Object.values(elementTypesWithPaths)[i].type === "string"
           ? name2 + "." + name
           : name2
-          ? name + "_" + name2
-          : name + "_Root",
+            ? name + "_" + name2
+            : name + "_Root",
     });
   }
   var stringType = mendixmodelsdk_1.datatypes.StringType.create(model);
@@ -47,17 +47,17 @@ function CreateImport_Mapping(
     var importValueMappingElement =
       element.type === "string"
         ? mendixmodelsdk_1.importmappings.ImportValueMappingElement.create(
-            model
-          )
+          model
+        )
         : mendixmodelsdk_1.importmappings.ImportObjectMappingElement.create(
-            model
-          );
+          model
+        );
     importValueMappingElement.elementType =
       element.type === "string"
         ? mendixmodelsdk_1.mappings.ElementType.Value
         : element.type === "Array"
-        ? mendixmodelsdk_1.mappings.ElementType.Array
-        : mendixmodelsdk_1.mappings.ElementType.Object;
+          ? mendixmodelsdk_1.mappings.ElementType.Array
+          : mendixmodelsdk_1.mappings.ElementType.Object;
     importValueMappingElement.jsonPath = element.path;
     importValueMappingElement.maxOccurs = element.type === "Object" ? -1 : 1;
     importValueMappingElement.nillable = true;
@@ -107,17 +107,16 @@ function CreateImport_Mapping(
   importObjectMappingElement.exposedName = "Root";
   importObjectMappingElement.entity =
     modules.findEntityByQualifiedName("SDKModule.Root");
-
   importObjectMappingElement.children.push(arry[arry.length - 1]);
-
   var unknownType = mendixmodelsdk_1.datatypes.UnknownType.create(model);
-
   var import_mapping =
     mendixmodelsdk_1.importmappings.ImportMapping.createIn(model);
   import_mapping.name = "Import_mapping";
   import_mapping.rootMappingElements.push(importObjectMappingElement);
   import_mapping.jsonStructure = Json_Structure;
   import_mapping.parameterType = unknownType;
+  console.log('Importy Created.')
+
   return import_mapping;
 }
 
