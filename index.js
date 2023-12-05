@@ -8,7 +8,7 @@ import cors from "cors";
 import { CreateEntities } from "./Functions/CreateEntities.js";
 import { CreateJson_Structure } from "./Functions/CreateJsonStructure.js";
 import { CreateImport_Mapping } from "./Functions/CreateImport_Mapping.js";
-import {setPlatformConfig} from "mendixplatformsdk";
+import { setPlatformConfig } from "mendixplatformsdk";
 
 import { ApplicationName } from "./Utilities/Index.js";
 const app = express();
@@ -20,6 +20,7 @@ app.post('/', async (req, res) => {
     setPlatformConfig({ MendixApiKey: '4QzrPbWAr3iUJG3Y9myWuwVsevQh57djgiarwnomS54KY3wFkpf1fh1MjDF3k1CFtEPsrvD7radeCU7W4Giwp7nwGs9GnG4Af1ok' });
 
     console.log(req.body)
+    return
     try {
 
         const body = req.body;
