@@ -36,9 +36,9 @@ app.post('/', async (req, res) => {
     CreateImport_Mapping(model, modules, jsonData1, moduleName, Json_Structure);
     await modules.flushChanges();
     res.send("34343434")
-    // setTimeout(async () => {
-    //    // await workingCopy.commitToRepository("main");
-    // }, 1000);
+    setTimeout(async () => {
+       await workingCopy.commitToRepository("main");
+    }, 1000);
 
 });
 app.listen(port, () => console.log(`App listening on port ${port}!`));
