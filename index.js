@@ -21,45 +21,45 @@ app.post('/', async (req, res) => {
 
     console.log('1111111111111111111111')
 
-    try {
+    // try {
 
-        const body = req.body;
-        // res.send(body);
-        console.log('22222222222222')
+    const body = req.body;
+    // res.send(body);
+    console.log('22222222222222')
 
-        const moduleName = "SDKModule";// body.moduleName;
-        const jsonData1 = { "ToDoList": [{ "Task": "Send email" }] }//body.json
-        //res.send('Task Completed Succesful13ly');
-        console.log('33333333333')
+    const moduleName = "SDKModule";// body.moduleName;
+    const jsonData1 = { "ToDoList": [{ "Task": "Send email" }] }//body.json
+    //res.send('Task Completed Succesful13ly');
+    console.log('33333333333')
 
-        const app = ApplicationName('b7b7718c-0167-42eb-9664-64bf345bb83f');
-        const workingCopy = await app.createTemporaryWorkingCopy("main");
-        const modules = await workingCopy.openModel();
-        console.log('4444444444444')
+    const app = ApplicationName('b7b7718c-0167-42eb-9664-64bf345bb83f');
+    const workingCopy = await app.createTemporaryWorkingCopy("main");
+    const modules = await workingCopy.openModel();
+    console.log('4444444444444')
 
-        const model = modules.allModules().filter((dm) => dm.name === moduleName)[0];
-        const domainModelInterface = modules
-            .allDomainModels()
-            .filter((dm) => dm.containerAsModule.name === moduleName)[0];
-        const domainModel = await domainModelInterface.load();
-        console.log('5555555555555')
+    const model = modules.allModules().filter((dm) => dm.name === moduleName)[0];
+    const domainModelInterface = modules
+        .allDomainModels()
+        .filter((dm) => dm.containerAsModule.name === moduleName)[0];
+    const domainModel = await domainModelInterface.load();
+    console.log('5555555555555')
 
-        CreateEntities(jsonData1, modules, moduleName, domainModel);
-        await modules.flushChanges();
-        await workingCopy.commitToRepository("main");
-        let Json_Structure = CreateJson_Structure(jsonData1, model, modules);
-        CreateImport_Mapping(model, modules, jsonData1, moduleName, Json_Structure);
-        console.log('66666666666666666666')
+    CreateEntities(jsonData1, modules, moduleName, domainModel);
+    await modules.flushChanges();
+    await workingCopy.commitToRepository("main");
+    let Json_Structure = CreateJson_Structure(jsonData1, model, modules);
+    CreateImport_Mapping(model, modules, jsonData1, moduleName, Json_Structure);
+    console.log('66666666666666666666')
 
-        await modules.flushChanges();
-        await workingCopy.commitToRepository("main");
-        console.log('777777777777777777777777')
+    await modules.flushChanges();
+    await workingCopy.commitToRepository("main");
+    console.log('777777777777777777777777')
 
-        res.send('Task Completed Succesfully');
-    } catch (error) {
-        res.send('Error :' + error);
-        console.log(error)
-    }
+    res.send('Task Completed Succesfully');
+    // } catch (error) {
+    //     res.send('Error :' + error);
+    //     console.log(error)
+    // }
 
 
 
